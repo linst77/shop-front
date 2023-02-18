@@ -1,0 +1,121 @@
+{
+    "EP":{
+       "menus":[
+          "Poly",
+          "gon",
+          "To store",
+          "order",
+          "profile",
+          "content",
+          "review"
+       ],
+       "customerorder":[
+          "Please select the order number",
+          "Order No",
+          "Product",
+          "Date"
+       ],
+       "notfound":[
+          " "
+       ],
+       "profile":[
+          "Registration",
+          "Hero/Heroin Information",
+          "Selected Product",
+          "Contact Email",
+          "Contact Phone",
+          "Name 1",
+          "Name a",
+          "Name b",
+          "Name c",
+          "Name d",
+          "Address",
+          "Today",
+          "Extra Infor",
+          "Caution",
+          "Please check your content again. Once you have submitted your content, it is hard to change any thing.",
+          "Submit your information"
+       ],
+       "content":[
+          "Update Your Files and Texts with",
+          "Step",
+          "Crop",
+          "Subtitle",
+          "Upload",
+          "Move Order",
+          "Picture needed",
+          "uploads",
+          "guide movie",
+          "Caution",
+          "Please check your content again. Once you have submitted your content, it is hard to change any thing.",
+          "Submit your content"
+       ],
+       "review":[
+          "Preview not Founded",
+          "There is no data with this. neque. Cras dapibus. Vivamus consectetuer hendrerit lacus. Sed mollis"
+       ]
+    },
+    "EN":{
+       "menus":[
+          "Poly",
+          "gon",
+          "To store",
+          "order",
+          "profile",
+          "content",
+          "review"
+       ],
+       "customerorder":[
+          "Please select the order number",
+          "Order No",
+          "Product",
+          "Date"
+       ],
+       "notfound":[
+          "No User Information Found",
+          "Nullam tincidunt adipiscing enim. In consectetuer turpis ut velit. Maecenas egestas arcu quis ligula mattis placerat. Praesent metus tellus, elementum eu, semper a, adipiscing nec, purus.",
+          "Back to the store"
+       ],
+       "onorder":[
+          "Any Order is not found",
+          "Nullam tincidunt adipiscing enim. In consectetuer turpis ut velit. Maecenas egestas arcu quis ligula mattis placerat. Praesent metus tellus, elementum eu, semper a, adipiscing nec, purus.",
+          "back to the store"
+       ],
+       "profile":[
+          "Registration",
+          "Hero/Heroin Information",
+          "Selected Product",
+          "Contact Email",
+          "Contact Phone",
+          "Name 1",
+          "Name a",
+          "Name b",
+          "Name c",
+          "Name d",
+          "Address",
+          "Today",
+          "Extra Infor",
+          "Caution",
+          "Please check your content again. Once you have submitted your content, it is hard to change any thing.",
+          "Submit your information"
+       ],
+       "content":[
+          "Update Your Files and Texts with",
+          "Step",
+          "Crop",
+          "Subtitle",
+          "Upload",
+          "Move Order",
+          "Picture needed",
+          "uploads",
+          "guide movie",
+          "Caution",
+          "Please check your content again. Once you have submitted your content, it is hard to change any thing.",
+          "Submit your content"
+       ],
+       "review":[
+          "Preview not Founded",
+          "There is no data with this. neque. Cras dapibus. Vivamus consectetuer hendrerit lacus. Sed mollis"
+       ]
+    }
+ }
