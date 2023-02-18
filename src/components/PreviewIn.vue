@@ -15,8 +15,8 @@
           hendrerit lacus. Sed mollis,
         </v-alert>
         <br />
-        <v-btn variant="flat" color="green" width="100%" @click="testRun()">
-          Download
+        <v-btn variant="flat" color="green" width="100%" @click="backtostore()">
+          Edit profile
         </v-btn>
       </v-card>
       
@@ -36,12 +36,12 @@
         <div class="container">
           <iframe
             class="responsive-iframe"
-            src="https://player.vimeo.com/video/791837360?h=544f5e275e"
+            :src="this.profile.user_order.preview"
             allow="autoplay; fullscreen; picture-in-picture"
           ></iframe>
         </div>
         <br>
-        <v-btn variant="flat" color="orange" width="100%" height="50" @click="testRun()">
+        <v-btn variant="flat" color="orange" width="100%" height="50" @click="review_confirm()">
           Confirm this preview
         </v-btn>
       </v-card>
@@ -63,24 +63,28 @@
         <div class="container">
           <iframe
             class="responsive-iframe"
-            src="https://player.vimeo.com/video/791837360?h=544f5e275e"
+            :src="this.profile.user_order.finalview"
             allow="autoplay; fullscreen; picture-in-picture"
           ></iframe>
         </div>
-        <br>
-        <v-btn variant="flat" color="orange" width="100%" height="50" @click="testRun()">
+        <v-alert
+          class="my-3"
+          variant="outlined"
+          color="orange"
+        >
+          Please click the shere button  <v-icon icon="mdi-send"></v-icon>  on video or download your content with download button below.
+        </v-alert>
+        <v-btn variant="flat" color="orange" width="100%" height="50" @click="download_content()">
           Download
         </v-btn>
       </v-card>
-
-
-
     </v-row>
   </v-container>
 </template>
 
 <script>
 import { mapState } from "vuex";
+import { push_route } from "@/api/http";
 
 export default {
   props: ["step"],
@@ -88,8 +92,14 @@ export default {
     ...mapState(["profile"]),
   },
   methods: {
-    testRun() {
-      console.log("Download Works");
+    backtostore() {
+      push_route('profile')
+    },
+    review_confirm(){
+      push_route("review confirmed")
+    },
+    download_content(){
+      console.log( "download content")
     },
   },
 };

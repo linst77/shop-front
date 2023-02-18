@@ -26,11 +26,8 @@
 </template>
 
 <script>
-import { mapState, mapActions, mapMutations } from "vuex";
-//import { del_local_storage, get_local_storage, push_route, back_to_store } from "@/api/http.js"
+import { mapActions, mapMutations } from "vuex";
 import { back_to_store } from "@/api/http.js";
-
-// import router from '@/router/router.js'
 
 export default {
   name: "OrDer",
@@ -38,27 +35,8 @@ export default {
     return {};
   },
   async created() {
-      console.log("---------------------")
       await this.$store.dispatch("profile/init_page")
     },
-
-    // if ( this.profile.user_data == null){
-    //   const user = ( get_local_storage())
-    //   if (user.email != null){
-    //     this.$store.commit('profile/set_language', user.language)
-    //     this.$store.dispatch("profile/get_user", user.email)
-    //   }
-    //   else{
-    //     del_local_storage()
-    //     push_route('notfound')
-    //   }
-    // }
-  computed: {
-    ...mapState(["profile"]),
-    shopify_url() {
-      return this.profile.shop;
-    },
-  },
   methods: {
     ...mapMutations(["set_user_data", "set_language"]),
     ...mapActions(["get_user"]),
@@ -66,8 +44,6 @@ export default {
     delete_storage() {
       back_to_store();
     },
-    //        ...mapMutations(["set_user_data", "set_language"]),
-    //       ...mapActions(["get_user"]),
   },
 };
 </script>

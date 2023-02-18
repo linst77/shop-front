@@ -24,7 +24,6 @@ export default {
 
         rotation : 0,
 
-
         // from django db_content
         file_data: [],
         content_user_data: {},
@@ -172,7 +171,7 @@ export default {
                 })
         },
 
-        /// final submit
+        /// final submit generating json in server
         async final_submit( {commit }, {id}){
             http.finalSubmit( id)
             .then((resp)=>{

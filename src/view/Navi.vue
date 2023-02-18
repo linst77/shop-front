@@ -86,7 +86,6 @@ export default {
 
     temp00 : null,
     items: [
-      // { title: "Login", icon: "mdi-login-variant", micon: "mdi-circle-small", link:{ name: 'login' }},
       {
         title: "Order",
         icon: "mdi-check",

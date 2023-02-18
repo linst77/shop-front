@@ -17,7 +17,7 @@ export default {
             "currency" : ""
         },
         orders_data: null,
-        language: "EN",
+        language: "EP",
         context : null,
         user_profile: {
             "id": null,
@@ -40,6 +40,7 @@ export default {
             "id":null,
             "product_title":"",
             "order_number":"",
+            "shopify_order_id": "",
             "status":null,
             "phone":"",
             "first_name":"",
@@ -66,7 +67,6 @@ export default {
          },
 
         // -------------------------------------------- profile ------------------------
-
     },
     mutations: {
         // -------------------------------------------- user and order ------------------ //
@@ -91,8 +91,7 @@ export default {
         },
     },
     actions: {
-        // ------------------------------------------ user and order -----------------//
-        // from user vuex
+        ////--------get customer information with email
         async get_user({ state, commit }, email) {
             // find user wieh email
             if (email != null) {
@@ -115,55 +114,29 @@ export default {
                         push_route('notfound')
                     })
             }
-            else {
-                // del_local_storage()
-                // push_route('notfound')
+            else{
+                push_route('notfound')
             }
         },
-        // -------------- get profile ---------------------//
-        async get_profile({ dispatch, commit, }, { order_id }) {
-            await http.user_profile(order_id)
-                .then((resp) => {
-                    commit('set_user_profile', resp.data[0])
-                    commit('set_user_order', resp.data[1])
-                    commit('set_user_product', resp.data[2])
-                    set_order_storage(order_id)
 
-                    // ------------------ init content ----------------//
-                    dispatch("content/init_content", {
-                        "order_id": resp.data[1].id,
-                        "product_id": resp.data[1].product
-                    }, { root: true })
-                    push_route('profile')
-                })
-            // push_route('profile')
-        },
-
-        async submit_profile({ commit }, { profile_id, data }) {
-            await http.update_profile(profile_id, data)
-                .then((resp) => {
-                    commit('set_user_profile', resp.data[1])
-                    commit('set_user_order', resp.data[0])
-                    push_route('content')
-
-                })
-        },
-
+// 0. web initialize functions
+    //---------------------- enter order.vue page
         async init_page({ state, dispatch }) {
             const storage_data = get_local_storage();
             if ( !state.user_data.email) {
                 if (storage_data.email != null && storage_data.email) {
                     dispatch("get_user", storage_data.email)
-                    if (storage_data.order != null && storage_data.order) {
-                        // console.log("-=-=-=-=-=-=-=-=-=-=-=-=-")
-                        // dispatch("get_user", storage_data.order)
-                    }
                 }
                 else if(!storage_data.email || storage_data.email == null){
                     push_route('notfound')
                 }
+                else{
+                    push_route('notfound')
+                }
             }
         },
+
+// 1. when user refresh in profile view
         async init_profile({ state, commit, dispatch }) {
             if ( !state.user_data.email) {
                 const storage_data = get_local_storage();
@@ -195,6 +168,35 @@ export default {
                         push_route('notfound')
                     })
             }
+        },
+
+// 2. customer order function
+        // -------------- get profile ---------------------//
+        async get_profile({ dispatch, commit, }, { order_id }) {
+            await http.user_profile(order_id)
+                .then((resp) => {
+                    commit('set_user_profile', resp.data[0])
+                    commit('set_user_order', resp.data[1])
+                    commit('set_user_product', resp.data[2])
+                    set_order_storage(order_id)
+
+                    // ------------------ init content ----------------//
+                    dispatch("content/init_content", {
+                        "order_id": resp.data[1].id,
+                        "product_id": resp.data[1].product
+                    }, { root: true })
+                    push_route('profile')
+                })
+        },
+
+// 3. profile submit button click
+        async submit_profile({ commit }, { profile_id, data }) {
+            await http.update_profile(profile_id, data)
+                .then((resp) => {
+                    commit('set_user_profile', resp.data[1])
+                    commit('set_user_order', resp.data[0])
+                    push_route('content')
+                })
         },
     }
 }

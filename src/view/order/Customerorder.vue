@@ -21,9 +21,9 @@
                   <v-btn
                     variant="outlined"
                     color="deep-orange"
-                    size="x-large"
-                    @click="each_order(item.id, user_email)"
-                    >{{ item.order_number }}</v-btn
+                    size="large"
+                    @click="each_order(item.id)"
+                    >#{{ item.order_number }}</v-btn
                   >
                 </td>
                 <td>{{ item.product_title }}</td>
@@ -52,20 +52,22 @@ export default {
       return this.profile.user_data.email;
     },
   },
-  created(){
-  },
   methods: {
     ...mapMutations(["set_user_data", "set_language"]),
     ...mapActions(["get_user"]),
 
     display_date(value) {
       if (this.profile.language == "EN") {
-        return moment(String(value)).format("MM/DD/YYYY-hh:mm");
-      } else {
-        return moment(String(value)).format("DD/MM/YYYY-hh:mm");
+        return moment(String(value)).format("MM/DD/YYYY");
+      } 
+      else if ( this.profile.language == "EP"){
+        return moment(String(value)).format("DD/MM/YYYY");
+        // return moment(String(value)).format("DD/MM/YYYY-hh:mm");
+      }
+      else{
+        return moment(String(value)).format("YYYY/DD/MM/");
       }
     },
-    // ------------- profile ------------//
     each_order(order_id) {
       this.$store.dispatch("profile/get_profile", {
                                                     "order_id" : order_id,

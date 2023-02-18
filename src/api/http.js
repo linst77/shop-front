@@ -5,6 +5,7 @@ import router from '@/router/router.js'
 // const BASE_URL = 'http://127.0.0.1:8000/'
 const BASE_URL = 'https://linst77jung.com/'
 const SHOP = "https://linst77777.myshopify.com/"
+
 // http requests
 export const http = {
     // --------- entering user------------- //
@@ -15,7 +16,6 @@ export const http = {
     order_verify: function ( user) {
         return axios.put(BASE_URL + "shopify/", user)
     },
-
     // --------- profile ------------- //
     user_profile:function( order_id){
         return axios.get(BASE_URL + "profile/" + order_id + "/userinfo/")
@@ -77,11 +77,11 @@ export const get_local_storage = function(){
         "order" : order
     }
 }
+
 // router
 export const push_route = function (target) {
     router.push({ name: target })
 }
-
 export const back_to_store = function(){
     del_local_storage()
     window.location.href=SHOP

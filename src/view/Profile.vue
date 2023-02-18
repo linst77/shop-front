@@ -24,6 +24,7 @@
       </v-card-actions>
     </v-card>
   </v-dialog>
+  <!-- Submit popup window -->
 
   <v-img
     src="https://shop-api-storage.s3.ap-northeast-2.amazonaws.com/static/images/temp/store/1/store1_front.jpg"
@@ -219,31 +220,31 @@ export default {
           dates: new Date(),
         },
       ],
+
+      // v-calendar
       modelConfig: {
         type: "string",
         mask: "YYYY-MM-DD h:mm:A", // Uses 'iso' if missing
       },
-      // v-calendar
       dateShow: false,
-
-      // Rules
+      // v-calendar      
+      // input Rules
       numberRule: [
         (v) =>
           (!isNaN(parseFloat(v)) && v >= 0 && v <= 99999999999999) ||
           "Only Number Needed",
       ],
       user_nm_rule: [
-        (v) => !!v || "이름은 필수 입력사항입니다.",
-        (v) => !(v && v.length >= 30) || "이름은 30자 이상 입력할 수 없습니다.",
+        (v) => !!v || "This field Required",
+        (v) => !(v && v.length >= 50) || "Only 50 characters you can put in",
         (v) =>
           !/[~!@#$%^&*()_+|<>?:{}]/.test(v) ||
-          "이름에는 특수문자를 사용할 수 없습니다.",
+          "No special characters allowed.",
       ],
     };
   },
   computed: {
     ...mapState(["user", "content", "profile"]),
-
     disabled_input(){
       if (this.profile.user_order.status >= 2){
         return true
