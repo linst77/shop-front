@@ -140,7 +140,7 @@ export default {
     tic_window(){
       let result
       if (this.content.clicked_type == 1 && this.content.status_modal == true){
-        result = 1
+        result = true
       }
       return result
     },
@@ -167,7 +167,6 @@ export default {
       this.coordinates = coordinates;
       this.$store.commit("content/set_rotation", image.transforms.rotate);
     },
-
     openFileUpload() {
       document.getElementById("eachChanges").click();
     },
@@ -248,6 +247,6 @@ export default {
 <style>
 .cropper_windows {
   display: block;
-  max-height: 560px;
+  max-height: 500px;
 }
 </style>

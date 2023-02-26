@@ -2,8 +2,8 @@ import axios from 'axios'
 import router from '@/router/router.js'
 
 // Lightsail Instancd with lightsail db
-const BASE_URL = 'http://127.0.0.1:8000/'
-// const BASE_URL = 'https://linst77jung.com/'
+// const BASE_URL = 'http://127.0.0.1:8000/'
+const BASE_URL = 'https://linst77jung.com/'
 const SHOP = "https://linst77777.myshopify.com/"
 
 // http requests

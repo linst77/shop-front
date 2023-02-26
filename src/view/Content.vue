@@ -1,6 +1,8 @@
 <template>
     <Imageeditor></Imageeditor>
+    <Videoeditor></Videoeditor>
     <Audioeditor></Audioeditor>
+    <LoadingWin></LoadingWin>
     
     <v-img
       src="https://shop-api-storage.s3.ap-northeast-2.amazonaws.com/static/images/temp/store/1/store1_front.jpg"
@@ -56,7 +58,8 @@ import { mapState, mapActions, mapMutations } from "vuex";
 import Card from "@/components/Card.vue";
 import Imageeditor from "@/components/ImageEditor.vue";
 import Audioeditor from "@/components/AudioEditor.vue";
-
+import Videoeditor from "@/components/VideoEditor.vue";
+import LoadingWin from "@/components/Loadingwin.vue";
 
 
 export default {
@@ -79,6 +82,16 @@ export default {
   },
   computed: {
     ...mapState(["content", "profile"]),
+
+    tic_window() {
+      let result;
+      if (this.content.clicked_type == 3 && this.content.status_modal == true) {result = 3;}
+      else if(this.content.clicked_type == 2 && this.content.status_modal == true){result = 2;}
+      else if(this.content.clicked_type == 1 && this.content.status_modal == true){result = 1;}
+      else{ result = 0}
+      return result
+    },
+
 
     // windowResolution_icon() {
     //   if (this.$vuetify.display.width > 965) return "large";
@@ -107,6 +120,8 @@ export default {
     Card,
     Imageeditor,
     Audioeditor,
+    LoadingWin,
+    Videoeditor,
   },
 };
 </script>

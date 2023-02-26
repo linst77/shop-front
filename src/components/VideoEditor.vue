@@ -15,11 +15,11 @@
               <span>{{ this.file_name }}</span>
             </div>
             <div>
-              <audio style="width:100%;"
+              <video  style="width:100%; max-height: 500px;"
                     controls
                     autoplay
                     :src="this.content.clicked_image">
-            </audio>
+            </video >
             </div>
             <v-text-field
               class="px-0"
@@ -50,7 +50,7 @@
               ></v-btn>
               <v-file-input
                 @change="eachChange"
-                accept="audio/*"
+                accept="video/mp4"
                 id="eachChanges"
                 style="display: none"
               />
@@ -75,7 +75,7 @@
 import { mapState, mapActions, mapMutations } from "vuex";
 
 export default {
-  name: "AudioEditor",
+  name: "VideoEditor",
   data() {
     return {
       snackbar: true,
@@ -90,7 +90,7 @@ export default {
     ...mapState(["content", "profile"]),
     tic_window() {
       let result;
-      if (this.content.clicked_type == 3 && this.content.status_modal == true) {
+      if (this.content.clicked_type == 2 && this.content.status_modal == true) {
         result = true;
       }
       return result;
@@ -103,18 +103,18 @@ export default {
       let index = this.content.clicked_image.lastIndexOf('.');
       let extension = null;
       if (index > 0) {
-        let audio_ext = ["mp3", "wav", "ogg"]
+        let audio_ext = ["mp4"]
         extension = this.content.clicked_image.substring(index + 1);
         if ( audio_ext.includes( extension)){
           let temp = this.content.clicked_image.lastIndexOf('/')
           extension = this.content.clicked_image.substring(temp+1)
         }
         else{
-          extension = "No Audio File [mp3,wav,ogg] Added Yet"
+          extension = "No Video File(mp4) Added Yet"
         }
       }
       else{
-        extension = "No Audio File [mp3,wav,ogg] Added Yet"
+        extension = "No Video File(mp4) Added Yet"
       }
       return extension
     }
@@ -152,17 +152,13 @@ export default {
       this.content.content_user_data.sub_title[index].text_array[order].text =
         event.target.value;
     },
-    // Sort patch
-    index_selector(idx) {
-      // update sort by selected index
-      if (this.profile.user_product.id) {
-        this.$store.dispatch("content/sort_save", { index: this.index });
-        this.index = idx;
-      }
-    },
   },
 };
 </script>
 
 <style>
+.video_windows{
+  max-height: 300px;
+}
+
 </style>
