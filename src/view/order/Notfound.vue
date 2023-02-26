@@ -26,7 +26,6 @@
 // import { del_local_storage } from '@/api/http.js'
 // import { get_local_storage } from '@/api/http.js'
 import { back_to_store } from '@/api/http';
-import context from "@/assets/context.json"
 
 export default {
   name: "NotFound",
@@ -36,7 +35,6 @@ export default {
     };
   },
   created(){
-    console.log( context["EN"])
   },
   computed: {
   },

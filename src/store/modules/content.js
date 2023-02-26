@@ -20,6 +20,7 @@ export default {
         clicked_id: null,
         clicked_index: null,
         clicked_order: null,
+        clicked_type : null,
         guide_overlay: false,
 
         rotation : 0,
@@ -56,6 +57,9 @@ export default {
         },
         set_clicked_id(state, data) {
             state.clicked_id = data
+        },
+        set_clicked_type(state, data){
+            state.clicked_type = data
         },
         set_clicked_index(state, data) {
             state.clicked_index = data
@@ -170,14 +174,23 @@ export default {
                     commit('set_context_data', resp.data)
                 })
         },
-
+        // review confirm
+        async update_review( {commit}, {data}){
+            http.review_confirm( data)
+            .then((resp)=>{
+                commit('profile/set_user_order', resp.data, { root: true } )
+            })
+        },
         /// final submit generating json in server
         async final_submit( {commit }, {id}){
             http.finalSubmit( id)
             .then((resp)=>{
                 commit('profile/set_user_order', resp.data, { root: true } )
             })
-        }
+        },
+
+
+
     }
 }
 

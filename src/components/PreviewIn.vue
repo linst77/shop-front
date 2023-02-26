@@ -83,7 +83,7 @@
 </template>
 
 <script>
-import { mapState } from "vuex";
+import { mapState, mapActions, mapMutations } from "vuex";
 import { push_route } from "@/api/http";
 
 export default {
@@ -92,11 +92,15 @@ export default {
     ...mapState(["profile"]),
   },
   methods: {
+    ...mapMutations(["set_user_data", "set_language"]),
+    ...mapActions(["get_user"]),
+
     backtostore() {
       push_route('profile')
     },
     review_confirm(){
-      push_route("review confirmed")
+      console.log( this.profile.user_order)
+      this.$store.dispatch("content/update_review", {data: this.profile.user_order} )
     },
     download_content(){
       console.log( "download content")

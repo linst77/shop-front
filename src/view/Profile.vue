@@ -238,8 +238,8 @@ export default {
         (v) => !!v || "This field Required",
         (v) => !(v && v.length >= 50) || "Only 50 characters you can put in",
         (v) =>
-          !/[~!@#$%^&*()_+|<>?:{}]/.test(v) ||
-          "No special characters allowed.",
+          !/[1234567890~!@#$%^&*()_+|<>?:{}]/.test(v) ||
+          "No special characters, number is allowed.",
       ],
     };
   },

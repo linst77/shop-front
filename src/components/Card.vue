@@ -116,12 +116,12 @@
                     flat
                   >
                     <div>
-                      <p class="card-text">{{ element.orders }}</p>
+                      <p class="card-text">{{ element.orders + 1 }}</p>
                     </div>
                   </v-card>
                   <div class="card-card-overlay">
                     <div v-if="this.disabled_input != true">
-                      <v-icon
+                      <v-icon v-if="element.file_type == 1"
                         size="small"
                         color="white"
                         @click="
@@ -136,6 +136,38 @@
                       >
                         mdi-crop
                       </v-icon>
+                      <v-icon v-if="element.file_type == 2"
+                        size="small"
+                        color="white"
+                        @click="
+                          imageEdit(
+                            element,
+                            index,
+                            element.orders,
+                            this.text_show_input_box[index],
+                            content.content_user_data.sub_title
+                          )
+                        "
+                      >
+                      mdi-movie-open-outline
+                      </v-icon>
+                      <v-icon v-if="element.file_type == 3"
+                        size="small"
+                        color="white"
+                        @click="
+                          imageEdit(
+                            element,
+                            index,
+                            element.orders,
+                            this.text_show_input_box[index],
+                            content.content_user_data.sub_title
+                          )
+                        "
+                      >
+                      mdi-music
+                      </v-icon>
+
+
                       <v-icon
                         size="small"
                         color="red"
@@ -287,6 +319,7 @@ export default {
     },
     image_click(element) {
       this.$store.commit("content/set_clicked_image", element.files);
+      this.$store.commit("content/set_clicked_type", element.file_type);
       this.$store.commit("content/set_clicked_id", element.id);
     },
     text_subtitle_show(index, listshow) {
@@ -308,19 +341,28 @@ export default {
         count_for = this.img_ct;
       }
 
+      let count_img = 0
       for (var i = 0; i < count_for; i++) {
-        this.content.file_data[index][i].thumbnail =
-          "https://linst-s3.s3.ap-northeast-2.amazonaws.com/static/images/temp/uploding_anim.gif";
-
-        const dataFile = new FormData();
-        const file_id = this.content.file_data[index][i].id;
-        dataFile.append("files", index_file[i]);
-        dataFile.append("id", file_id);
-        this.$store.dispatch("content/put_files", {
-          id: file_id,
-          data: dataFile,
-          index: index,
-        });
+        let each = this.content.file_data[index][i]
+        if ( i >= this.img_ct){
+          break
+        }
+        else if (each.file_type == 1){
+          each.thumbnail = "https://linst-s3.s3.ap-northeast-2.amazonaws.com/static/images/temp/uploding_anim.gif";
+          const dataFile = new FormData();
+          const file_id = this.content.file_data[index][i].id;
+          dataFile.append("files", index_file[count_img]);
+          count_img += 1
+          dataFile.append("id", file_id);
+          this.$store.dispatch("content/put_files", {
+            id: file_id,
+            data: dataFile,
+            index: index,
+            });
+        }
+        else{
+          count_for += 1;
+        }
       }
     },
     photo_dragging(count, index) {
@@ -331,10 +373,12 @@ export default {
     },
 
     imageEdit(element, index, orders, list, content) {
-      // console.log(element.files);
-      this.$store.commit("content/set_status_modal", true);
       this.$store.commit("content/set_clicked_image", element.files);
       this.$store.commit("content/set_clicked_id", element.id);
+      this.$store.commit("content/set_clicked_type", element.file_type)
+      this.$store.commit("content/set_status_modal", true);
+      console.log( this.content.status_modal)
+
       // text input box show or not
       let input_box = this.text_subtitle_show(orders, list);
       if (input_box === true) {
@@ -412,7 +456,7 @@ export default {
   margin: 0px;
   width: 100%;
   height: 100%;
-  filter: grayscale(30%) brightness(60%);
+  filter: grayscale(30%) brightness(50%);
 }
 .card-active {
   padding: 0px;
