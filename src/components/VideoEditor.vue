@@ -12,7 +12,7 @@
         >
           <v-card-text class="pb-0 mb-0">
             <div class="mb-3">
-              <span>{{ this.file_name }}</span>
+              <span><v-icon icon="mdi-circle-small"></v-icon>{{ this.file_name }}</span>
             </div>
             <div>
               <video  style="width:100%; max-height: 500px;"

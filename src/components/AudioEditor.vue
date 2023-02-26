@@ -12,7 +12,7 @@
         >
           <v-card-text class="pb-0 mb-0">
             <div class="mb-3">
-              <span>{{ this.file_name }}</span>
+              <span> <v-icon icon="mdi-circle-small"></v-icon> {{ this.file_name }}</span>
             </div>
             <div>
               <audio style="width:100%;"
@@ -50,7 +50,7 @@
               ></v-btn>
               <v-file-input
                 @change="eachChange"
-                accept="audio/*"
+                accept=".mp3, .wav"
                 id="eachChanges"
                 style="display: none"
               />
