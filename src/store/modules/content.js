@@ -7,6 +7,7 @@ export default {
 
         // if modal window needs to pop up
         status_modal: false,
+        loading_win : false,
         // if there is text needed
         text_input_modal: false,
         // each text
@@ -39,6 +40,9 @@ export default {
         },
         set_status_modal(state, data) {
             state.status_modal = data
+        },
+        set_loading_win(state, data) {
+            state.loading_win = data
         },
         set_status_text_input(state, data) {
             state.text_input_modal = data
@@ -130,6 +134,9 @@ export default {
         /// Cropper each file changes
         async put_eachfile({ state, commit }, { id, data }) {
             commit('set_status_modal', false)
+            commit('set_loading_win', true)
+            console
+            
             await http.patchFile(id, data)
                 .then((resp) => {
                     for (var i = 0; i < state.file_data.length; i++) {
@@ -138,6 +145,7 @@ export default {
                                 state.file_data[i][j].files = resp.data.files
                                 state.file_data[i][j].thumbnail = resp.data.thumbnail
                                 commit('set_clicked_image', resp.data.files)
+                                commit('set_loading_win', false)
                                 commit('set_status_modal', true)
                             }
                         }
@@ -188,8 +196,6 @@ export default {
                 commit('profile/set_user_order', resp.data, { root: true } )
             })
         },
-
-
 
     }
 }
