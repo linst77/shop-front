@@ -12,7 +12,7 @@
         >
           <v-card-text class="pb-0 mb-0">
             <div class="mb-3">
-              <span> <v-icon icon="mdi-circle-small"></v-icon> {{ this.file_name }}</span>
+              <span> <v-icon icon="mdi-music-note"></v-icon> {{ this.file_name }}</span>
             </div>
             <div>
               <audio style="width:100%;"

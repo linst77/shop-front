@@ -2,8 +2,8 @@
   <div>
     <v-dialog 
     v-model="this.content.loading_win"
-    :scrim="false" persistent width="auto">
-      <v-card color="blue" width="400">
+    :scrim="true" persistent width="auto">
+      <v-card color="blue" width="250">
         <v-card-text>
           Please wait for uploading
           <v-progress-linear

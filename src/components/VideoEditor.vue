@@ -12,10 +12,10 @@
         >
           <v-card-text class="pb-0 mb-0">
             <div class="mb-3">
-              <span><v-icon icon="mdi-circle-small"></v-icon>{{ this.file_name }}</span>
+              <span><v-icon icon="mdi-movie-outline"></v-icon>{{ this.file_name }}</span>
             </div>
             <div>
-              <video  style="width:100%; max-height: 500px;"
+              <video  style="width:100%; max-height: 430px;"
                     controls
                     autoplay
                     :src="this.content.clicked_image">
@@ -103,7 +103,7 @@ export default {
       let index = this.content.clicked_image.lastIndexOf('.');
       let extension = null;
       if (index > 0) {
-        let audio_ext = ["mp4"]
+        let audio_ext = ["mp4", "mov", "MOV"]
         extension = this.content.clicked_image.substring(index + 1);
         if ( audio_ext.includes( extension)){
           let temp = this.content.clicked_image.lastIndexOf('/')
@@ -157,8 +157,5 @@ export default {
 </script>
 
 <style>
-.video_windows{
-  max-height: 300px;
-}
 
 </style>
